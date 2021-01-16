@@ -2,7 +2,7 @@
     "name": "ebcms/admin",
     "description": "admin console for ebcms",
     "type": "ebcms-app",
-    "license": "MIT",
+    "license": "Apache-2.0",
     "require": {
         "ebcms/framework": "1.*",
         "ebcms/request-filter": "^1.0",
