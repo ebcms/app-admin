@@ -37,7 +37,7 @@
                     <div class="input-group mb-2 mr-sm-2">
                         <input type="text" name="captcha" class="form-control" autocomplete="off" autocomplete="off" required>
                         <div class="input-group-append">
-                            <img id="captcha" style="vertical-align: middle;cursor: pointer;" class="rounded-right" onclick="this.src = '<?php echo $router->buildUrl('/ebcms/admin/auth/captcha'); ?>?time=' + (new Date()).getTime();">
+                            <img id="captcha" style="vertical-align: middle;cursor: pointer;height: 38px;" class="rounded-right" onclick="this.src = '<?php echo $router->buildUrl('/ebcms/admin/auth/captcha'); ?>?time=' + (new Date()).getTime();">
                         </div>
                     </div>
                 </div>

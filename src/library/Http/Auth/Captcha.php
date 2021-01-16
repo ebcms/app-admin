@@ -6,9 +6,9 @@ namespace App\Ebcms\Admin\Http\Auth;
 
 use App\Ebcms\Admin\Traits\ResponseTrait;
 use App\Ebcms\Admin\Traits\RestfulTrait;
+use Ebcms\Captcha as EbcmsCaptcha;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
-use Ebcms\Captcha;
 use Ebcms\Session;
 
 class Captcha
@@ -20,7 +20,7 @@ class Captcha
     public function get(
         Session $session,
         ResponseFactoryInterface $responseFactory,
-        Captcha $captcha
+        EbcmsCaptcha $captcha
     ): ResponseInterface {
         $code = mt_rand(1000, 9999);
         $session->set('admin_captcha', $code);
