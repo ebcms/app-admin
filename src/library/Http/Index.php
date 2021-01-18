@@ -19,7 +19,12 @@ class Index extends Common
         Template $template
     ) {
         if ($input->get('tpl') == 'main') {
-            $html = $template->renderFromFile('main@ebcms/admin');
+            $readme_file = $app->getAppPath() . '/README.md';
+            $json_file = $app->getAppPath() . '/composer.json';
+            $html = $template->renderFromFile('main@ebcms/admin', [
+                'readme' => file_exists($readme_file) ? file_get_contents($readme_file) : '',
+                'package' => file_exists($json_file) ? json_decode(file_get_contents($json_file), true) : [],
+            ]);
             return $this->html($html);
         } else {
             $menus = new SplPriorityQueue;

@@ -1,76 +1,69 @@
-{include /common/header@ebcms/admin}
-<div class="my-4 display-4">系统概览</div>
-<hr>
-<div>
-    欢迎使用xxx系统。。，xxx系统是xxx开发的，如果什么exxx下，欢迎加qq群(xxxxxxxx)讨论，坚决抵制盗版系统，维护健康网络环境。
-</div>
-<div class="table-responsive">
-    <div class="h4 my-3">系统信息</div>
-    <table class="table table-bordered table-striped">
-        <tbody>
-            <tr>
-                <td style="width:120px;">系统版本</td>
-                <td>EBCMS v{php echo json_decode(file_get_contents($app->getAppPath() . '/composer.json'), true)['version']}</td>
-            </tr>
-            <tr>
-                <td>上传限制</td>
-                <td>{:get_cfg_var('upload_max_filesize')}</td>
-            </tr>
-            <tr>
-                <td>脚本超时</td>
-                <td>{:get_cfg_var('max_execution_time')}秒</td>
-            </tr>
-            <tr>
-                <td>服务器系统</td>
-                <td>{:php_uname()}</td>
-            </tr>
-            <tr>
-                <td>运行环境</td>
-                <td>PHP v{:PHP_VERSION}&nbsp;&nbsp;{$_SERVER['SERVER_SOFTWARE']}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<div class="table-responsive">
-    <div class="h4 my-3">安全提示</div>
-    <table class="table table-bordered table-striped">
-        <tbody>
-            <tr>
-                <td style="width:120px;">调试模式</td>
-                <td>网站正式上线后，建议关闭错误信息显示，开启模板编译缓存</td>
-            </tr>
-            <tr>
-                <td>数据备份</td>
-                <td>网站正式上线后，建议定期对系统重要数据进行备份</td>
-            </tr>
-            <tr>
-                <td>文件安全</td>
-                <td>网站正式上线后，建议只开启runtime、uploads的读写权限，其他文件和目录设置为只读</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<div class="table-responsive">
-    <div class="h4 my-3">产品团队</div>
-    <table class="table table-bordered table-striped">
-        <tbody>
-            <tr>
-                <td style="width:120px;">总策划</td>
-                <td>荷塘月色</td>
-            </tr>
-            <tr>
-                <td>开发团队</td>
-                <td>荷塘月色、鱼摆摆、请输入昵称等</td>
-            </tr>
-            <tr>
-                <td>官方网址</td>
-                <td><a href="http://www.ebcms.com" target="_blank">EBCMS官方网站</a></td>
-            </tr>
-            <tr>
-                <td>QQ群</td>
-                <td><span style="color:red;">457911526</span></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+{include common/header@ebcms/admin}
+<div id="readme"></div>
+<div class="h2">系统信息</div>
+<table class="table table-bordered table-striped my-3">
+    <thead>
+        <tr>
+            <th>项目</th>
+            <th>内容</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="width:120px;">系统版本</td>
+            <td>{$package['name']} v{$package['version']??'--'}</td>
+        </tr>
+        <tr>
+            <td>上传限制</td>
+            <td>{:get_cfg_var('upload_max_filesize')}</td>
+        </tr>
+        <tr>
+            <td>脚本超时</td>
+            <td>{:get_cfg_var('max_execution_time')}秒</td>
+        </tr>
+        <tr>
+            <td>服务器系统</td>
+            <td>{:php_uname()}</td>
+        </tr>
+        <tr>
+            <td>运行环境</td>
+            <td>PHP v{:PHP_VERSION}&nbsp;&nbsp;{$_SERVER['SERVER_SOFTWARE']}</td>
+        </tr>
+    </tbody>
+</table>
+<script src="https://cdn.jsdelivr.net/npm/markdown-it@12.0.3/dist/markdown-it.min.js" integrity="sha256-w9HUyWlYpo2NY0GnFNkPqoxBdCNZNn1B3lgPQif2d2I=" crossorigin="anonymous"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.1.2/styles/vs.css">
+<style>
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        margin: 15px 0;
+    }
+</style>
+<script>
+    function base64Decode(input) {
+        rv = window.atob(input);
+        rv = escape(rv);
+        rv = decodeURIComponent(rv);
+        return rv;
+    }
+    var md = window.markdownit({
+        highlight: function(str, lang) {
+            if (lang && hljs.getLanguage(lang)) {
+                try {
+                    return '<pre class="hljs"><code>' +
+                        hljs.highlight(lang, str, true).value +
+                        '</code></pre>';
+                } catch (__) {}
+            }
+            return '<pre class="hljs"><code>' + window.markdownit().utils.escapeHtml(str) + '</code></pre>';
+        }
+    });
+    $("#readme").html(md.render(base64Decode("{:base64_encode($readme??'__暂无介绍__')}")));
+    $("#readme a").attr("target", "_blank");
+    $("#readme table").addClass("table table-bordered table-striped my-3");
+</script>
 {include common/footer@ebcms/admin}
