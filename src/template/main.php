@@ -1,36 +1,5 @@
 {include common/header@ebcms/admin}
 <div id="readme"></div>
-<div class="h2">系统信息</div>
-<table class="table table-bordered table-striped my-3">
-    <thead>
-        <tr>
-            <th>项目</th>
-            <th>内容</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td style="width:120px;">系统版本</td>
-            <td>{$package['name']} v{$package['version']??'--'}</td>
-        </tr>
-        <tr>
-            <td>上传限制</td>
-            <td>{:get_cfg_var('upload_max_filesize')}</td>
-        </tr>
-        <tr>
-            <td>脚本超时</td>
-            <td>{:get_cfg_var('max_execution_time')}秒</td>
-        </tr>
-        <tr>
-            <td>服务器系统</td>
-            <td>{:php_uname()}</td>
-        </tr>
-        <tr>
-            <td>运行环境</td>
-            <td>PHP v{:PHP_VERSION}&nbsp;&nbsp;{$_SERVER['SERVER_SOFTWARE']}</td>
-        </tr>
-    </tbody>
-</table>
 <script src="https://cdn.jsdelivr.net/npm/markdown-it@12.0.3/dist/markdown-it.min.js" integrity="sha256-w9HUyWlYpo2NY0GnFNkPqoxBdCNZNn1B3lgPQif2d2I=" crossorigin="anonymous"></script>
 <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.1.2/styles/vs.css">
