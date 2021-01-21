@@ -96,7 +96,7 @@ trait ResponseTrait
         }
     }
 
-    final private function _isAjax(): bool
+    private function _isAjax(): bool
     {
         if (isset($_SERVER["HTTP_X_REQUESTED_WITH"]) && strtolower($_SERVER["HTTP_X_REQUESTED_WITH"]) == "xmlhttprequest") {
             return true;
@@ -105,7 +105,7 @@ trait ResponseTrait
         }
     }
 
-    final private function _getTpl(): string
+    private function _getTpl(): string
     {
         return <<<'str'
 <!DOCTYPE html>
