@@ -72,6 +72,9 @@
             </span>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
+                    <a class="nav-link" href="{:$router->buildUrl('/')}" target="_blank">网站首页</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="https://www.ebcms.com" target="_blank">官方网站</a>
                 </li>
                 <li class="nav-item">
