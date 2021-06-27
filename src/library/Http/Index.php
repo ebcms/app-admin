@@ -7,7 +7,7 @@ namespace App\Ebcms\Admin\Http;
 use Ebcms\App;
 use Ebcms\Config;
 use SplPriorityQueue;
-use Ebcms\RequestFilter;
+use Ebcms\Request;
 use Ebcms\Template;
 
 class Index extends Common
@@ -15,10 +15,10 @@ class Index extends Common
     public function get(
         App $app,
         Config $config,
-        RequestFilter $input,
+        Request $request,
         Template $template
     ) {
-        if ($input->get('tpl') == 'main') {
+        if ($request->get('tpl') == 'main') {
             $readme_file = $app->getAppPath() . '/README.md';
             $json_file = $app->getAppPath() . '/composer.json';
             $html = $template->renderFromFile('main@ebcms/admin', [

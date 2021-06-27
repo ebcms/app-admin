@@ -6,11 +6,11 @@ namespace App\Ebcms\Admin\Http\Auth;
 
 use App\Ebcms\Admin\Http\Common;
 use App\Ebcms\Admin\Interfaces\AccountInterface;
+use Ebcms\Request;
 use Ebcms\Router;
-use Psr\Http\Message\ResponseInterface;
-use Ebcms\RequestFilter;
 use Ebcms\Session;
 use Ebcms\Template;
+use Psr\Http\Message\ResponseInterface;
 
 class Login extends Common
 {
@@ -24,7 +24,7 @@ class Login extends Common
 
     public function post(
         Router $router,
-        RequestFilter $input,
+        Request $request,
         AccountInterface $accountModel,
         Session $session
     ): ResponseInterface {
@@ -34,7 +34,7 @@ class Login extends Common
         }
         $session->delete('admin_captcha');
 
-        if (!$accountModel->loginByName($input->post('account'), $input->post('password'))) {
+        if (!$accountModel->loginByName($request->post('account'), $request->post('password'))) {
             return $this->failure('认证失败！');
         }
 

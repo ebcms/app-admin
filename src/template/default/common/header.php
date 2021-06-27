@@ -8,9 +8,9 @@
     <meta name="author" content="">
     <title>{$meta['title']??'后台管理系统'} - Powered by EBCMS</title>
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha256-djO3wMl9GeaC/u6K+ic4Uj/LKhRUSlUFcsruzS7v5ms=" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha256-fh8VA992XMpeCZiRuU4xii75UIG6KvHrbUF8yIS/2/4=" crossorigin="anonymous"></script>
     <script>
         var M = {};
         M.open = function(open) {
@@ -28,7 +28,7 @@
                 str += '<div class="modal-content">';
                 str += '<div class="modal-header">';
                 str += '<div class="modal-title">' + open.title + '</div>';
-                str += '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+                str += '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
                 str += '</div>';
                 str += '<div class="modal-body">';
                 str += '<iframe frameborder="0" id="iframe_' + open.id + '" src="' + open.url + '" scrolling="no" style="width: 100%;"></iframe>';
@@ -40,9 +40,6 @@
                 $("#iframe_" + open.id).on("load", function() {
                     var myiframeH = $('#iframe_' + open.id).contents().find("html").outerHeight(true);
                     $('#iframe_' + open.id).height(myiframeH);
-                    // if (timer) {
-                    //     clearInterval(timer);
-                    // }
                 });
                 $('#' + open.id).on('shown.bs.modal', function(e) {
 
@@ -74,7 +71,7 @@
             str += '<div class="modal-content">';
             str += '<div class="modal-header">';
             str += '<div class="modal-title">' + modal.title + '</div>';
-            str += '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+            str += '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
             str += '</div>';
             str += '<div class="modal-body">';
             str += modal.body;

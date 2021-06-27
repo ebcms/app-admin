@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{$meta['title']??'后台管理系统'} - Powered by EBCMS</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" integrity="sha256-aAr2Zpq8MZ+YA/D6JtRD3xtrwpEz2IqOS+pWD/7XKIw=" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.js" integrity="sha256-i/Jq6Tc8SbPMBrnvq/sOTfH81hW5emVa4OzZPqhcwtI=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha256-djO3wMl9GeaC/u6K+ic4Uj/LKhRUSlUFcsruzS7v5ms=" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha256-fh8VA992XMpeCZiRuU4xii75UIG6KvHrbUF8yIS/2/4=" crossorigin="anonymous"></script>
     <script>
         var M = {};
         $(function() {
@@ -20,8 +20,7 @@
                 html += toast.icon;
                 html += '<strong class="mr-auto ml-1">' + toast.title + '</strong>';
                 // html += '<small class="text-muted">2 seconds ago</small>';
-                html += '<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">';
-                html += '<span aria-hidden="true">&times;</span>';
+                html += '<button type="button" class="ml-2 mb-1 btn-close" data-dismiss="toast" aria-label="Close">';
                 html += '</button>';
                 html += '</div>';
                 html += '<div class="toast-body">';
@@ -53,56 +52,58 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom shadow-sm" style="z-index:2;">
-        <a class="navbar-brand wb" href="http://www.ebcms.com/" target="_blank">EBCMS</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top border-bottom shadow-sm" style="z-index:2;">
+        <div class="container-fluid">
+            <a class="navbar-brand wb" href="http://www.ebcms.com/" target="_blank">EBCMS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto d-block d-lg-none">
-                {foreach $menus as $v}
-                <li class="nav-item">
-                    <a class="nav-link" href="{$v.url}" target="main">{$v.title}</a>
-                </li>
-                {/foreach}
-            </ul>
-            <span class="navbar-text d-none d-lg-block">
-                好用的管理系统
-            </span>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{:$router->buildUrl('/')}" target="_blank">网站首页</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://www.ebcms.com" target="_blank">官方网站</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" id="changepwd">修改密码</a>
-                </li>
-                <li class="nav-item">
-                    <script>
-                        function clearcache() {
-                            $.ajax({
-                                type: "POST",
-                                url: "{:$router->buildUrl('/ebcms/admin/clear-cache')}",
-                                dataType: "JSON",
-                                success: function(response) {
-                                    alert(response.message);
-                                    location.reload();
-                                },
-                                error: function(context) {
-                                    alert(context.statusText);
-                                }
-                            });
-                        }
-                    </script>
-                    <a class="nav-link" href="javascript:clearcache();">清理缓存</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{:$router->buildUrl('/ebcms/admin/auth/logout')}">退出</a>
-                </li>
-            </ul>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav d-flex d-lg-none">
+                    {foreach $menus as $v}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{$v.url}" target="main">{$v.title}</a>
+                    </li>
+                    {/foreach}
+                </ul>
+                <span class="navbar-text me-auto d-none d-lg-flex">
+                    好用的管理系统
+                </span>
+                <ul class="navbar-nav d-flex">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{:$router->buildUrl('/')}" target="_blank">网站首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.ebcms.com" target="_blank">官方网站</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="changepwd">修改密码</a>
+                    </li>
+                    <li class="nav-item">
+                        <script>
+                            function clearcache() {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "{:$router->buildUrl('/ebcms/admin/clear-cache')}",
+                                    dataType: "JSON",
+                                    success: function(response) {
+                                        alert(response.message);
+                                        location.reload();
+                                    },
+                                    error: function(context) {
+                                        alert(context.statusText);
+                                    }
+                                });
+                            }
+                        </script>
+                        <a class="nav-link" href="javascript:clearcache();">清理缓存</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{:$router->buildUrl('/ebcms/admin/auth/logout')}">退出</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
     <script>
@@ -175,15 +176,13 @@
     </style>
     <div class="main">
         <div class="left d-none d-lg-block bg-light">
-            <div>
-                <ul class="nav flex-column" id="leftnav">
-                    {foreach $menus as $v}
-                    <li class="nav-item">
-                        <a class="nav-link text-truncate py-3 px-4 font-weight-bold text-secondary" href="{$v.url}" target="{$v['target']??'main'}">{if isset($v['icon']) && $v['icon']}<span class="mr-2">{$v['icon']}</span>{/if}{$v.title}{if strlen($v['badge'])}<span class="badge badge-danger badge-pill ml-1">{$v['badge']}</span>{/if}</a>
-                    </li>
-                    {/foreach}
-                </ul>
-            </div>
+            <ul class="nav flex-column" id="leftnav">
+                {foreach $menus as $v}
+                <li class="nav-item">
+                    <a class="nav-link text-truncate py-3 px-4 font-weight-bold text-secondary" href="{$v.url}" target="{$v['target']??'main'}">{if isset($v['icon']) && $v['icon']}<span class="me-2">{echo $v['icon']}</span>{/if}{$v.title}{if strlen($v['badge'])}<span class="badge badge-danger badge-pill ml-1">{$v['badge']}</span>{/if}</a>
+                </li>
+                {/foreach}
+            </ul>
             <script>
                 $("#leftnav > li").bind("click", function() {
                     $(this).addClass("cur").siblings().removeClass("cur");

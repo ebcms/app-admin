@@ -31,7 +31,7 @@
             return '<pre class="hljs"><code>' + window.markdownit().utils.escapeHtml(str) + '</code></pre>';
         }
     });
-    $("#readme").html(md.render(base64Decode("{:base64_encode($readme??'__暂无介绍__')}")));
+    $("#readme").html(md.render(base64Decode("{echo base64_encode($readme??'__暂无介绍__')}")));
     $("#readme a").attr("target", "_blank");
     $("#readme table").addClass("table table-bordered table-striped my-3");
 </script>
