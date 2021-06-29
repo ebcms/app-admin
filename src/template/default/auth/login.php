@@ -19,7 +19,7 @@
 </head>
 
 <body class="bg-light">
-    <div class="container">
+    <div style="max-width: 600px;margin: 0 auto;">
         <div class="my-3" style="font-size: 35px;">登录</div>
         <hr>
         <div class="p-4 my-5 mx-auto border shadow-sm bg-white" style="max-width: 400px;">
