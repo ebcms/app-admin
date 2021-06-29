@@ -15,12 +15,12 @@
             localStorage.setItem("toast", "{}");
             M.addToast = function(toast) {
                 var html = "";
-                html += '<div class="toast fade hide toast_' + toast.id + '" data-toastid="' + toast.id + '" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true" data-delay="' + toast.delay + '">';
+                html += '<div class="toast fade hide toast_' + toast.id + '" data-toastid="' + toast.id + '" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="' + toast.delay + '">';
                 html += '<div class="toast-header">';
                 html += toast.icon;
                 html += '<strong class="mr-auto ml-1">' + toast.title + '</strong>';
                 // html += '<small class="text-muted">2 seconds ago</small>';
-                html += '<button type="button" class="ml-2 mb-1 btn-close" data-dismiss="toast" aria-label="Close">';
+                html += '<button type="button" class="ml-2 mb-1 btn-close" data-bs-dismiss="toast" aria-label="Close">';
                 html += '</button>';
                 html += '</div>';
                 html += '<div class="toast-body">';
@@ -179,7 +179,7 @@
             <ul class="nav flex-column" id="leftnav">
                 {foreach $menus as $v}
                 <li class="nav-item">
-                    <a class="nav-link text-truncate py-3 px-4 font-weight-bold text-secondary" href="{$v.url}" target="{$v['target']??'main'}">{if isset($v['icon']) && $v['icon']}<span class="me-2">{echo $v['icon']}</span>{/if}<span class="me-2">{$v.title}</span>{if strlen($v['badge'])}<span class="badge bg-danger badge-pill">{$v['badge']}</span>{/if}</a>
+                    <a class="nav-link text-truncate py-3 px-4 font-weight-bold text-secondary" href="{$v.url}" target="{$v['target']??'main'}">{if isset($v['icon']) && $v['icon']}<span class="me-2">{echo $v['icon']}</span>{/if}{$v.title}{if strlen($v['badge'])}<span class="badge badge-danger badge-pill ml-1">{$v['badge']}</span>{/if}</a>
                 </li>
                 {/foreach}
             </ul>
