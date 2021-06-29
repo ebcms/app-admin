@@ -48,7 +48,7 @@ class Config
 
     private function checkSimpleValue($data)
     {
-        if (is_scalar($data)) {
+        if (is_scalar($data) || is_null($data)) {
             return true;
         }
         if (is_array($data)) {
